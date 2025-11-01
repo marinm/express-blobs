@@ -2,6 +2,7 @@ import express from "express";
 import { promises as fs } from "fs";
 import path from "path";
 import crypto from "crypto";
+import os from "os";
 
 const app = express();
 const PORT = 8080;
@@ -53,6 +54,7 @@ app.delete("/blobs/:id", async (req, res) => {
 });
 
 app.listen(PORT, () => {
+	console.log(`User: ${os.userInfo().username}`);
     console.log(`Listening on ${PORT}`);
     console.log(`Storing blobs in ${BLOB_DIR}`);
 });
