@@ -11,7 +11,7 @@ Delete  DELETE /blobs/:id
 
 Create a blob:
 ```
-curl -X POST https://marinm.net/blobs -H "Content-Type: text/plain" --data-binary 'hello world';
+curl -X POST https://marinm.net/blobs --data-binary 'hello world';
 ```
 The response will be something like:
 ```
@@ -25,7 +25,7 @@ curl https://marinm.net/blobs/:id
 
 Update a blob:
 ```
-curl -X PUT https://marinm.net/blobs/:id -H "Content-Type: text/plain" --data-binary 'hello world updated';
+curl -X PUT https://marinm.net/blobs/:id --data-binary 'hello world updated';
 ```
 
 Delete a blob:
