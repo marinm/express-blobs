@@ -1,15 +1,16 @@
 import express from "express";
+import { Request, Response } from "express";
 import { promises as fs } from "fs";
 import path from "path";
 import crypto from "crypto";
 
-function createBlobsRouter(directory, rawLimit) {
+export function createBlobsRouter(directory: string, rawLimit: string) {
   const router = express.Router();
 
   router.use(express.raw({ type: "*/*", limit: rawLimit }));
 
   // Create
-  router.post("/blobs", async (req, res) => {
+  router.post("/blobs", async (req: Request, res: Response) => {
     const id = crypto.randomUUID();
     const filePath = path.join(directory, id);
     await fs.writeFile(filePath, req.body);
@@ -17,7 +18,7 @@ function createBlobsRouter(directory, rawLimit) {
   });
 
   // Read
-  router.get("/blobs/:id", async (req, res) => {
+  router.get("/blobs/:id", async (req: Request, res: Response) => {
     const filePath = path.join(directory, req.params.id);
     try {
       const data = await fs.readFile(filePath);
@@ -28,7 +29,7 @@ function createBlobsRouter(directory, rawLimit) {
   });
 
   // Update
-  router.put("/blobs/:id", async (req, res) => {
+  router.put("/blobs/:id", async (req: Request, res: Response) => {
     const filePath = path.join(directory, req.params.id);
     try {
       await fs.access(filePath);
@@ -40,7 +41,7 @@ function createBlobsRouter(directory, rawLimit) {
   });
 
   // Delete
-  router.delete("/blobs/:id", async (req, res) => {
+  router.delete("/blobs/:id", async (req: Request, res: Response) => {
     const filePath = path.join(directory, req.params.id);
     try {
       await fs.unlink(filePath);
@@ -52,5 +53,3 @@ function createBlobsRouter(directory, rawLimit) {
 
   return router;
 }
-
-export default createBlobsRouter;

@@ -1,8 +1,11 @@
 {
   "name": "@marinm/blobs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Express CRUD routes for storing blobs",
   "homepage": "https://github.com/marinm/blobs",
+  "scripts": {
+    "build": "tsc"
+  },
   "bugs": {
     "url": "https://github.com/marinm/blobs/issues"
   },
@@ -11,10 +14,28 @@
     "url": "git+https://github.com/marinm/blobs.git"
   },
   "license": "ISC",
-  "author": "",
+  "keywords": [
+    "express",
+    "middleware",
+    "typescript",
+    "blobs",
+    "files"
+  ],
+  "author": "marinm",
   "type": "module",
-  "main": "index.js",
+  "files": [
+    "README.md",
+    "dist/**/*"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "dependencies": {
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@tsconfig/node24": "^24.0.3",
+    "@types/express": "^5.0.5",
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3"
   }
 }
