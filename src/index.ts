@@ -11,10 +11,14 @@ export function createBlobsRouter(directory: string, rawLimit: string) {
 
   // Create
   router.post("/blobs", async (req: Request, res: Response) => {
-    const id = crypto.randomUUID();
-    const filePath = path.join(directory, id);
-    await fs.writeFile(filePath, req.body);
-    res.status(201).json({ id });
+    try {
+      const id = crypto.randomUUID();
+      const filePath = path.join(directory, id);
+      await fs.writeFile(filePath, req.body);
+      res.status(201).json({ id });
+    } catch {
+      res.sendStatus(500);
+    }
   });
 
   // Read

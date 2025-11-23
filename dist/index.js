@@ -7,10 +7,15 @@ export function createBlobsRouter(directory, rawLimit) {
     router.use(express.raw({ type: "*/*", limit: rawLimit }));
     // Create
     router.post("/blobs", async (req, res) => {
-        const id = crypto.randomUUID();
-        const filePath = path.join(directory, id);
-        await fs.writeFile(filePath, req.body);
-        res.status(201).json({ id });
+        try {
+            const id = crypto.randomUUID();
+            const filePath = path.join(directory, id);
+            await fs.writeFile(filePath, req.body);
+            res.status(201).json({ id });
+        }
+        catch {
+            res.sendStatus(500);
+        }
     });
     // Read
     router.get("/blobs/:id", async (req, res) => {
