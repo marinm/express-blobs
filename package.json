@@ -1,6 +1,6 @@
 {
   "name": "@marinm/express-blobs",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Express CRUD routes for storing blobs",
   "homepage": "https://github.com/marinm/express-blobs",
   "scripts": {
